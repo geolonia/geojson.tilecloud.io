@@ -2,7 +2,9 @@ $border-color: #cccccc;
 
 html
 {
+  width: 100%;
   height: 100%;
+  overflow: hidden;
   margin: 0;
   box-sizing: border-box;
 }
@@ -32,19 +34,6 @@ body
       font-weight: normal;
       color: #999999;
     }
-
-    .logo
-    {
-      position: absolute;
-      top: 0;
-      right: 0;
-      z-index: 10;
-
-      img
-      {
-        max-height: 16px;
-      }
-    }
   }
 
   .app-container
@@ -56,6 +45,7 @@ body
     top: 0;
     box-sizing: border-box;
     padding-top: 30px;
+    padding-bottom: 30px;
 
     .map-container
     {
@@ -97,6 +87,31 @@ body
         font-family: "Courier New", Consolas, monospace;
         color: #2B2B2B;
       }
+    }
+  }
+}
+
+.footer
+{
+  margin: 0;
+  padding: 0;
+  text-align: right;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  a
+  {
+    margin: 0;
+    padding: 0;
+    font-size: 10px;
+    color: #999999;
+    text-decoration: none;
+
+    img
+    {
+      max-height: 18px;
+      vertical-align: middle;
     }
   }
 }

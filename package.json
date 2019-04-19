@@ -1,0 +1,26 @@
+{
+  "name": "geojson.tilecloud.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel -d ${TMPDIR} src/index.html --open",
+    "build": "npm run build:site",
+    "build:site": "rm -fr public && parcel build -d public src/index.html --public-url '.' && touch public/.nojekyll"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@mapbox/mapbox-gl-draw": "^1.1.1",
+    "babel-polyfill": "^6.26.0",
+    "parcel-bundler": "^1.12.3",
+    "promise-polyfill": "^8.1.0",
+    "whatwg-fetch": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^5.16.0",
+    "sass": "^1.19.0"
+  }
+}

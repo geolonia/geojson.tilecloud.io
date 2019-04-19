@@ -2,6 +2,7 @@
 
 import 'babel-polyfill'
 import MapboxDraw from '@mapbox/mapbox-gl-draw'
+import geojsonExtent from '@mapbox/geojson-extent'
 import styleControl from './lib/styleControl'
 
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
@@ -33,7 +34,12 @@ map.addControl(new styleControl() );
 
 const drawSet = () => {
   if ( document.getElementById( 'geojson' ).value.trim() ) {
-    draw.set( JSON.parse( document.getElementById( 'geojson' ).value ) )
+    const json = JSON.parse( document.getElementById( 'geojson' ).value )
+    draw.set( json )
+    const bounds = geojsonExtent( json )
+    map.fitBounds( bounds, {
+      padding: 20,
+    } )
   }
 }
 

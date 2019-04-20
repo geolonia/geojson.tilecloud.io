@@ -44,6 +44,12 @@ const drawSet = () => {
     map.fitBounds( bounds, {
       padding: 20,
     } )
+  } else {
+    const json = {
+      type: "FeatureCollection",
+      features: [],
+    }
+    document.getElementById( 'geojson' ).value = JSON.stringify( json, null, '  ' )
   }
 }
 

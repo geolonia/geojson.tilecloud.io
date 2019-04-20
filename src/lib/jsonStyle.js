@@ -1,3 +1,8 @@
+/**
+ * All properties should have prefix `user_`.
+ * See https://github.com/mapbox/mapbox-gl-draw/blob/master/docs/API.md
+ */
+
 export default [
   {
     'id': 'draw-active-points',

@@ -3,6 +3,10 @@
  * See https://github.com/mapbox/mapbox-gl-draw/blob/master/docs/API.md
  */
 
+const color_active = '#ff9933'
+const opacity_active = 0.8
+const stroke_active = '#ffffff'
+
 export default [
   {
     'id': 'draw-active-points',
@@ -13,10 +17,10 @@ export default [
       ['==', 'active', 'true']],
     paint: {
       'circle-radius': 7,
-      'circle-color': '#ff3333',
-      'circle-opacity': 0.6,
+      'circle-color': color_active,
+      'circle-opacity': opacity_active,
       'circle-stroke-width': 3,
-      'circle-stroke-color': '#ffffff',
+      'circle-stroke-color': stroke_active,
       'circle-stroke-opacity': 1.0,
     },
   },
@@ -50,7 +54,7 @@ export default [
       ['==', 'active', 'true']],
     paint: {
       'line-width': 2,
-      'line-color': '#ff3333',
+      'line-color': color_active,
       'line-opacity': 1.0,
     },
     layout: {
@@ -83,9 +87,9 @@ export default [
       ['==', 'meta', 'feature'],
       ['==', 'active', 'true']],
     paint: {
-      'fill-color': '#ff3333',
-      'fill-opacity': 0.6,
-      'fill-outline-color': '#ffffff',
+      'fill-color': color_active,
+      'fill-opacity': opacity_active,
+      'fill-outline-color': stroke_active,
     },
   },
   {

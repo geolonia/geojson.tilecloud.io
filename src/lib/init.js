@@ -35,12 +35,13 @@ export default () => {
   const drawSet = () => {
     if ( document.getElementById( 'geojson' ).value.trim() ) {
       const json = JSON.parse( document.getElementById( 'geojson' ).value )
-
       draw.set( json )
       const bounds = geojsonExtent( json )
-      map.fitBounds( bounds, {
-        padding: 20,
-      } )
+      if (bounds) {
+        map.fitBounds( bounds, {
+          padding: 20,
+        } )
+      }
     } else {
       const json = {
         type: "FeatureCollection",

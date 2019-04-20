@@ -6,7 +6,7 @@
   "scripts": {
     "start": "parcel -d ${TMPDIR} src/index.html --open",
     "build": "npm run build:site",
-    "build:site": "rm -fr docs && parcel build -d docs src/index.html --public-url '.' && touch docs/.nojekyll"
+    "build:site": "rm -fr docs && parcel build -d docs src/index.html --public-url '.' && touch docs/.nojekyll && echo 'geojson.tilecloud.io' > docs/CNAME"
   },
   "author": "",
   "license": "ISC",

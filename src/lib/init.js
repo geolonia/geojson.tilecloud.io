@@ -1,5 +1,7 @@
 'use strict'
 
+/* global tilecloud:false */
+
 import MapboxDraw from '@mapbox/mapbox-gl-draw'
 import geojsonExtent from '@mapbox/geojson-extent'
 import styleControl from './styleControl'
@@ -21,10 +23,10 @@ export default () => {
     userProperties: true,
   } )
 
-  map.addControl( draw, 'top-right' );
+  map.addControl( draw, 'top-right' )
   map.addControl(new styleControl() );
 
-  [ 'draw.create', 'draw.update', 'draw.delete' ].forEach( ( eventType ) => {
+  [ 'draw.create', 'draw.update', 'draw.delete' ].forEach( eventType => {
     map.on( eventType, () => {
       const textArea = document.getElementById( 'geojson' )
       const geoJson = draw.getAll()
@@ -44,7 +46,7 @@ export default () => {
       }
     } else {
       const json = {
-        type: "FeatureCollection",
+        type: 'FeatureCollection',
         features: [],
       }
       document.getElementById( 'geojson' ).value = JSON.stringify( json, null, '  ' )

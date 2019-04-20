@@ -12,7 +12,7 @@ class styleControl {
     this.container = document.createElement('div')
     this.container.className = 'mapboxgl-ctrl'
 
-    return this.container;
+    return this.container
   }
 
   onRemove() {
@@ -24,4 +24,4 @@ class styleControl {
   }
 }
 
-export default styleControl;
+export default styleControl

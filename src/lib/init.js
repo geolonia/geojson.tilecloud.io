@@ -4,13 +4,16 @@
 
 import MapboxDraw from '@mapbox/mapbox-gl-draw'
 import geojsonExtent from '@mapbox/geojson-extent'
+import turfCenter from '@turf/center'
 import styleControl from './styleControl'
 import jsonStyle from './jsonStyle'
+import toTable from './toTable'
 
 export default () => {
   const map = new tilecloud.Map( document.getElementById( 'map' ) )
 
   const draw = new MapboxDraw( {
+    boxSelect: false,
     controls: {
       point: true,
       line_string: true,
@@ -55,4 +58,13 @@ export default () => {
 
   document.getElementById( 'geojson' ).addEventListener( 'change', drawSet )
   window.addEventListener( 'load', drawSet )
+
+  map.on( 'draw.selectionchange', event => {
+    if ( event.features.length ) {
+      const feature = event.features[ event.features.length - 1 ]
+      const center = turfCenter( feature ).geometry.coordinates
+      const content = toTable( feature.properties )
+      new mapboxgl.Popup().setLngLat( center ).setHTML( content ).addTo( map )
+    }
+  } )
 }

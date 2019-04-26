@@ -40,19 +40,21 @@ export default () => {
   const drawSet = () => {
     if ( document.getElementById( 'geojson' ).value.trim() ) {
       const json = JSON.parse( document.getElementById( 'geojson' ).value )
-      draw.set( json )
+      document.getElementById( 'geojson' ).value = JSON.stringify(json, null, '  ')
+
+      draw.deleteAll().set( json )
       const bounds = geojsonExtent( json )
       if (bounds) {
         map.fitBounds( bounds, {
           padding: 20,
         } )
       }
-      document.getElementById( 'geojson' ).value = JSON.stringify(json, null, '  ')
     } else {
       const json = {
         type: 'FeatureCollection',
         features: [],
       }
+      draw.deleteAll()
       document.getElementById( 'geojson' ).value = JSON.stringify( json, null, '  ' )
     }
   }
@@ -63,9 +65,10 @@ export default () => {
   map.on( 'draw.selectionchange', event => {
     if ( event.features.length ) {
       const feature = event.features[ event.features.length - 1 ]
-      const center = turfCenter( feature ).geometry.coordinates
-      const content = toTable( feature.properties )
-      new mapboxgl.Popup().setLngLat( center ).setHTML( content ).addTo( map )
+      if (feature.properties.description) {
+        const center = turfCenter( feature ).geometry.coordinates
+        new mapboxgl.Popup().setLngLat( center ).setHTML( feature.properties.description ).addTo( map )
+      }
     }
   } )
 }

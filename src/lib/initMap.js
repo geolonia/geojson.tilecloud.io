@@ -47,6 +47,7 @@ export default () => {
           padding: 20,
         } )
       }
+      document.getElementById( 'geojson' ).value = JSON.stringify(json, null, '  ')
     } else {
       const json = {
         type: 'FeatureCollection',

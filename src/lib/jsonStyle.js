@@ -3,38 +3,26 @@
  * See https://github.com/mapbox/mapbox-gl-draw/blob/master/docs/API.md
  */
 
-const color_active = '#ff9933'
-const opacity_active = 0.8
-const stroke_active = '#ffffff'
-
 export default [
   {
-    id: 'draw-active-points',
-    type: 'circle',
+    id: 'draw-polygon',
+    type: 'fill',
     filter: ['all',
-      ['==', '$type', 'Point'],
+      ['==', '$type', 'Polygon'],
       ['==', 'meta', 'feature']
     ],
     paint: {
-      'circle-radius': [
-        'case',
-        ['==', 'small', ['get', 'user_marker-size']], 3,
-        ['==', 'large', ['get', 'user_marker-size']], 13,
-        9,
-      ],
-      'circle-color': ['string', ['get', 'user_marker-color'], '#7e7e7e'],
-      'circle-opacity': [
+      'fill-color': ['string', ['get', 'user_fill'], '#7e7e7e'],
+      'fill-opacity': [
         'case',
         ['==', ['get', 'active'], 'true'], 0.2,
-        ['number', ['get', 'user_fill-opacity'], 0.6],
+        ['number', ['get', 'user_fill-opacity'], 1.0],
       ],
-      'circle-stroke-width': ['number', ['get', 'user_stroke-width'], 2],
-      'circle-stroke-color': [
+      'fill-outline-color': [
         'case',
         ['==', ['get', 'active'], 'true'], '#ff6600',
         ['string', ['get', 'user_stroke'], '#555555'],
       ],
-      'circle-stroke-opacity': ['number', ['get', 'user_stroke-opacity'], 1.0],
     },
   },
   {
@@ -63,24 +51,32 @@ export default [
     },
   },
   {
-    id: 'draw-polygon',
-    type: 'fill',
+    id: 'draw-active-points',
+    type: 'circle',
     filter: ['all',
-      ['==', '$type', 'Polygon'],
+      ['==', '$type', 'Point'],
       ['==', 'meta', 'feature']
     ],
     paint: {
-      'fill-color': ['string', ['get', 'user_fill'], '#7e7e7e'],
-      'fill-opacity': [
+      'circle-radius': [
+        'case',
+        ['==', 'small', ['get', 'user_marker-size']], 3,
+        ['==', 'large', ['get', 'user_marker-size']], 13,
+        9,
+      ],
+      'circle-color': ['string', ['get', 'user_marker-color'], '#7e7e7e'],
+      'circle-opacity': [
         'case',
         ['==', ['get', 'active'], 'true'], 0.2,
         ['number', ['get', 'user_fill-opacity'], 0.6],
       ],
-      'fill-outline-color': [
+      'circle-stroke-width': ['number', ['get', 'user_stroke-width'], 2],
+      'circle-stroke-color': [
         'case',
         ['==', ['get', 'active'], 'true'], '#ff6600',
         ['string', ['get', 'user_stroke'], '#555555'],
       ],
+      'circle-stroke-opacity': ['number', ['get', 'user_stroke-opacity'], 1.0],
     },
   },
   {

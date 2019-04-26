@@ -41,6 +41,7 @@ export default () => {
     if ( document.getElementById( 'geojson' ).value.trim() ) {
       const json = JSON.parse( document.getElementById( 'geojson' ).value )
       document.getElementById( 'geojson' ).value = JSON.stringify(json, null, '  ')
+      localStorage.setItem('geoJSON', JSON.stringify(json))
 
       draw.deleteAll().set( json )
       const bounds = geojsonExtent( json )
@@ -60,7 +61,11 @@ export default () => {
   }
 
   document.getElementById( 'geojson' ).addEventListener( 'change', drawSet )
-  window.addEventListener( 'load', drawSet )
+  window.addEventListener( 'load', () => {
+    const json = JSON.parse(localStorage.getItem("geoJSON"))
+    document.getElementById( 'geojson' ).value = JSON.stringify(json, null, '  ')
+    drawSet()
+  } )
 
   map.on( 'draw.selectionchange', event => {
     if ( event.features.length ) {

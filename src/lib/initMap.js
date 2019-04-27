@@ -34,6 +34,7 @@ export default () => {
       const textArea = document.getElementById( 'geojson' )
       const geoJson = draw.getAll()
       textArea.value = JSON.stringify( geoJson, null, '  ' )
+      localStorage.setItem('geoJSON', JSON.stringify(geoJson))
     } )
   } )
 

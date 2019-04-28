@@ -52,20 +52,20 @@ export default () => {
         } )
       }
     } else {
-      const json = {
-        type: 'FeatureCollection',
-        features: [],
-      }
       draw.deleteAll()
-      document.getElementById( 'geojson' ).value = JSON.stringify( json, null, '  ' )
+      document.getElementById( 'geojson' ).value = ''
     }
   }
 
   document.getElementById( 'geojson' ).addEventListener( 'change', drawSet )
   window.addEventListener( 'load', () => {
-    const json = JSON.parse(localStorage.getItem("geoJSON"))
-    document.getElementById( 'geojson' ).value = JSON.stringify(json, null, '  ')
-    drawSet()
+    if (localStorage.getItem("geoJSON")) {
+      const json = JSON.parse(localStorage.getItem("geoJSON"))
+      if (json) {
+        document.getElementById( 'geojson' ).value = JSON.stringify(json, null, '  ')
+        drawSet()
+      }
+    }
   } )
 
   map.on( 'draw.selectionchange', event => {
@@ -76,5 +76,11 @@ export default () => {
         new mapboxgl.Popup().setLngLat( center ).setHTML( feature.properties.description ).addTo( map )
       }
     }
+  } )
+
+  document.getElementById( 'clear' ).addEventListener( 'click', () => {
+    localStorage.removeItem( 'geoJSON' );
+    document.getElementById( 'geojson' ).value = ''
+    drawSet()
   } )
 }

@@ -26,6 +26,8 @@ body
 
   .header
   {
+    position: relative;
+
     h1
     {
       margin: 0;
@@ -33,6 +35,14 @@ body
       line-height: 18px;
       font-weight: normal;
       color: #999999;
+    }
+
+    #clear
+    {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 9999;
     }
   }
 

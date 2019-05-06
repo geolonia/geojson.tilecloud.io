@@ -41,6 +41,9 @@ export default () => {
   const drawSet = () => {
     if ( document.getElementById( 'geojson' ).value.trim() ) {
       const json = JSON.parse( document.getElementById( 'geojson' ).value )
+      if ( json.crs ) {
+        delete json.crs
+      }
       document.getElementById( 'geojson' ).value = JSON.stringify(json, null, '  ')
       localStorage.setItem('geoJSON', JSON.stringify(json))
 
